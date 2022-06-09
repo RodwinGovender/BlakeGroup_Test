@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="IS_Test_DBModelStoreContainer" CdmEntityContainer="IS_Test_DBEntities">
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="IS_Test_DBModel.Client">
+        <MappingFragment StoreEntitySet="Client">
+          <ScalarProperty Name="Client_ID" ColumnName="Client_ID" />
+          <ScalarProperty Name="Client_Name" ColumnName="Client_Name" />
+          <ScalarProperty Name="Client_Surname" ColumnName="Client_Surname" />
+          <ScalarProperty Name="Client_Age" ColumnName="Client_Age" />
+          <ScalarProperty Name="Client_DOB" ColumnName="Client_DOB" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Documents">
+      <EntityTypeMapping TypeName="IS_Test_DBModel.Document">
+        <MappingFragment StoreEntitySet="Document">
+          <ScalarProperty Name="Doc_ID" ColumnName="Doc_ID" />
+          <ScalarProperty Name="Doc_Name" ColumnName="Doc_Name" />
+          <ScalarProperty Name="Doc_Content" ColumnName="Doc_Content" />
+          <ScalarProperty Name="Client_ID" ColumnName="Client_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="AddDocument" FunctionName="IS_Test_DBModel.Store.AddDocument" />
+    <FunctionImportMapping FunctionImportName="GetClientDetails" FunctionName="IS_Test_DBModel.Store.GetClientDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IS_Test_DBModel.GetClientDetails_Result">
+          <ScalarProperty Name="Client_ID" ColumnName="Client_ID" />
+          <ScalarProperty Name="Client_Name" ColumnName="Client_Name" />
+          <ScalarProperty Name="Client_Surname" ColumnName="Client_Surname" />
+          <ScalarProperty Name="Client_Age" ColumnName="Client_Age" />
+          <ScalarProperty Name="Client_DOB" ColumnName="Client_DOB" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetDocument" FunctionName="IS_Test_DBModel.Store.GetDocument">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IS_Test_DBModel.GetDocument_Result">
+          <ScalarProperty Name="Doc_ID" ColumnName="Doc_ID" />
+          <ScalarProperty Name="Doc_Name" ColumnName="Doc_Name" />
+          <ScalarProperty Name="Doc_Content" ColumnName="Doc_Content" />
+          <ScalarProperty Name="Client_ID" ColumnName="Client_ID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetDocumentForClient" FunctionName="IS_Test_DBModel.Store.GetDocumentForClient">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IS_Test_DBModel.GetDocumentForClient_Result">
+          <ScalarProperty Name="Doc_ID" ColumnName="Doc_ID" />
+          <ScalarProperty Name="Doc_Name" ColumnName="Doc_Name" />
+          <ScalarProperty Name="Doc_Content" ColumnName="Doc_Content" />
+          <ScalarProperty Name="Client_ID" ColumnName="Client_ID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

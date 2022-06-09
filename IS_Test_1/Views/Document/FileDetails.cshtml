@@ -1,0 +1,116 @@
+﻿@model IEnumerable<IS_Test_1.Document>
+
+
+@*<table class="table table-bordered">
+    <tr>
+        <th class="col-md-4">
+            @Html.DisplayNameFor(model => model.Doc_Name)
+        </th>
+        
+        <th class="col-md-2"></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Doc_Name)
+    </td>
+
+    <td>
+        @Html.ActionLink("Download", "DownLoadFile", new { id = item.Doc_ID })
+
+    </td>
+    <td>
+        @Html.ActionLink("Delete", "DeleteFile", new { id = item.Doc_ID })
+
+    </td>
+</tr>
+}
+
+</table>*@
+
+
+    <style>
+  .spacing-table {
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  font-size: 12px;
+  border-collapse: separate;
+  table-layout: fixed;
+  width: 100%;
+  border-spacing: 0 0px; /* this is the ultimate fix */
+}
+.spacing-table th {
+  text-align: left;
+  padding: 5px 15px;
+}
+.spacing-table td {
+  border-width: 3px 0;
+  width: 50%;
+  border-color: none;
+  border-style: none;
+  background-color: #eeeeee;
+  color: black;
+  padding: 5px 5px 5px 5px;
+}
+.spacing-table td:first-child {
+  border-left-width: 3px;
+  border-radius: 5px 0 0 5px;
+  padding-left:5px;
+}
+       
+.spacing-table td:last-child {
+  border-right-width: 3px;
+  border-radius: 0 5px 5px 0;
+  padding-left: 50px;
+}
+.spacing-table thead {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+.spacing-table tbody {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  border-spacing: 0 10px;
+}
+
+        .iconadd {
+
+ background: url(../../Assets/view-file.svg) no-repeat center;
+     display: block;
+     width: 50px;
+     height: 50px;
+     text-indent: -9999px;
+        }
+
+        .iconadd2 {
+
+ background: url(../../Assets/delete.svg) no-repeat center;
+     display: block;
+     width: 50px;
+     height: 50px;
+     text-indent: -9999px;
+        }
+    </style>
+
+
+   
+    @foreach (var item in Model)
+    {
+       
+
+<table class="spacing-table">
+       
+    <tbody>
+        <tr>
+            <td> @Html.DisplayFor(modelItem => item.Doc_Name)</td>
+
+            <td> @Html.ActionLink("Delete", "DeleteFile", new { id = item.Doc_ID }, new { @class = "iconadd2" })</td>
+
+            <td>  @Html.ActionLink("Download", "DownLoadFile", new { id = item.Doc_ID }, new { @class = "iconadd" })</td>
+        </tr>
+      
+    </tbody>
+</table>
+    }

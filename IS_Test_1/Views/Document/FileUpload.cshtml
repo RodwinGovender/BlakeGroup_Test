@@ -1,0 +1,340 @@
+﻿@model IS_Test_1.EmpModel
+
+@{
+    ViewBag.Title = "FileUpload";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("FileUpload", "Document", FormMethod.Post, new { enctype = "multipart/form-data" , @class = "EmpModel" } ))
+{
+
+    <!DOCTYPE html>
+
+    <html>
+
+    <head>
+        <script src="~/Scripts/jquery-3.3.1.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#Apply').prop('disabled', true);
+                $("#files").change(function () {
+                    // Get uploaded file extension
+                    var extension = $(this).val().split('.').pop().toLowerCase();
+                    // Create array with the files extensions that we wish to upload
+                    var validFileExtensions = ['pdf'];
+                    //Check file extension in the array.if -1 that means the file extension is not in the list.
+                    if ($.inArray(extension, validFileExtensions) == -1) {
+                        alert("Sorry!! Upload only 'pdf' file")
+                        // Clear fileuload control selected file
+                        $(this).replaceWith($(this).val('').clone(true));
+                        //Disable Submit Button
+                        $('#Apply').prop('disabled', true);
+                    } else {
+                        // Check and restrict the file size to 128 KB.
+                        if ($(this).get(0).files[0].size > (5242880)) {
+                            alert("Sorry!! Max allowed file size is 5 mb");
+                            // Clear fileuload control selected file
+                            $(this).replaceWith($(this).val('').clone(true));
+                            //Disable Submit Button
+                            $('#Apply').prop('disabled', true);
+                        } else {
+                            //Enable Submit Button
+                            $('#Apply').prop('disabled', false);
+                        }
+                    }
+                });
+                //$("#Apply").click(function () {
+                //    if ($("#FirstName").val() = null || $("#LastName").val() || $("#Skills").val() || $("#EmailID").val() || $("#ContactNo").val() || $("#Resume").val()) {
+                //        alert("Please fill out required fields(*)");
+                //        return false;
+                //    }
+                //    return true;
+                //});
+            });
+        </script>
+
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            /* Full-width input fields */
+            input[type=text], input[type=password] {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: none;
+                border-bottom: 1px solid #808080
+            }
+
+            h4 {
+                padding-left:50px;
+            }
+            .card {
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                transition: 0.3s;
+                width: 80%;
+                margin: -108px 54px 112px 43px;
+                position: absolute;
+                background-color: white;
+            }
+
+                .card:hover {
+                    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+                }
+
+            .container2 {
+                margin: 5px 5px 5px 5px;
+                padding: 16px;
+                position: relative;
+            }
+
+
+            /* Set a style for all buttons */
+            .button {
+                background-color: white;
+                color: #50B848;
+                padding: 14px 20px;
+               
+                margin: 30px 0px;
+                border: solid;
+                border-color: #50B848;
+                cursor: pointer;
+                width: 60%;
+            }
+
+            button {
+                background-color: white;
+                color: #50B848;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: solid;
+                border-color: #50B848;
+                cursor: pointer;
+                width: 100%;
+            }
+
+                button:hover {
+                    opacity: 0.8;
+                }
+
+            /* Extra styles for the cancel button */
+            .cancelbtn {
+                width: auto;
+                padding: 10px 18px;
+                background-color: #f44336;
+            }
+
+            /* Center the image and position the close button */
+            .imgcontainer {
+                text-align: center;
+                margin: 24px 0 12px 0;
+                position: relative;
+            }
+
+            .imgcontainer2 {
+                margin: 24px 0 12px 0;
+                padding: 16px;
+                position: relative;
+            }
+
+            img.avatar {
+                width: 100%;
+                margin-top: 65px;
+            }
+
+            img.avatar2 {
+                width: 30%;
+                float: left;
+                margin: -35px -12px -67px 0px;
+                position: absolute;
+            }
+
+             img.avatar3 {
+                width: 11%;
+                float: left;
+                margin: -35px -12px -67px 0px;
+                padding-top:40px;
+                position: absolute;
+            }
+
+            .container {
+                padding: 16px;
+            }
+
+            .top-left {
+                position: absolute;
+                top: 105px;
+                left: 20px;
+                color: white;
+                font-size: 30px;
+            }
+
+            .top-left2 {
+                position: absolute;
+                top: 145px;
+                left: 20px;
+                color: white;
+                font-size: 15px;
+                font-weight: lighter;
+                text-align: left;
+            }
+
+            span.psw {
+                float: right;
+                padding-top: 16px;
+            }
+
+            /* The Modal (background) */
+            .modal {
+                display: block; /* Hidden by default */
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                left: 0;
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                padding-top: 60px;
+            }
+
+            /* Modal Content/Box */
+            .modal-content {
+                background-color: #fefefe;
+                margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+                border: 1px solid #888;
+                width: 32%; /* Could be more or less, depending on screen size */
+                margin-bottom: 100px;
+                padding-bottom: 450px;
+            }
+
+            /* The Close Button (x) */
+            .close {
+                position: absolute;
+                right: 25px;
+                top: 0;
+                color: #000;
+                font-size: 35px;
+                font-weight: bold;
+            }
+
+                .close:hover,
+                .close:focus {
+                    color: red;
+                    cursor: pointer;
+                }
+
+            /* Add Zoom Animation */
+            .animate {
+                -webkit-animation: animatezoom 0.6s;
+                animation: animatezoom 0.6s
+            }
+
+            @@-webkit-keyframes animatezoom {
+                from {
+                    -webkit-transform: scale(0)
+                }
+
+                to {
+                    -webkit-transform: scale(1)
+                }
+            }
+
+            @@keyframes animatezoom {
+                from {
+                    transform: scale(0)
+                }
+
+                to {
+                    transform: scale(1)
+                }
+            }
+
+            /* Change styles for span and cancel button on extra small screens */
+            @@media screen and (max-width: 300px) {
+                span.psw {
+                    display: block;
+                    float: none;
+                }
+
+                .cancelbtn {
+                    width: 40%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+
+
+
+        @Html.AntiForgeryToken()
+        <br />
+        <h2>Upload Documents</h2>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <hr />
+        <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Click Here</button>
+
+        <div id="id01" class="modal">
+
+            <div class="modal-content animate">
+                <div class="imgcontainer">
+                    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                    <img src="~/Assets/logo.svg" alt="Avatar" class="avatar2">
+                    <img src="~/Assets/bg.png" alt="Avatar" class="avatar">
+                    <div class="top-left">Upload your Documents</div>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="container2">
+                        <img src="~/Assets/id-card.svg" alt="Avatar" class="avatar3">  <h4><b>Identity Document</b></h4>
+                        <p>Please upload your South African identity document. Back and Front if you have the lastest ID Card.</p>
+                        <br />
+
+                        @Html.Action("FileDetails", "Document")
+
+
+                        @Html.TextBoxFor(model => model.files, "", new { @type = "file", @multiple = "multiple" })
+                        @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
+                        @*<input type="text" placeholder="Enter ID Number" name="psw" required> <br />*@
+                        @ViewBag.FileStatus
+                        <input type="submit" value="SUBMIT" id="Apply" class="button" />
+                        <br />
+                        @*<button type="submit">LOGIN</button>*@
+
+                        @Html.ActionLink("LOGOUT", "Logout",null, new { @class="button"})
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <script>
+            // Get the modal
+            var modal = document.getElementById('id01');
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        </script>
+
+
+
+        <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    </body>
+
+</html>
+
+}

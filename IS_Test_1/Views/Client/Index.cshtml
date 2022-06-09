@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@Session["Error"]
+@model IEnumerable<GetClientDetails_Result>
+
+@*@foreach (GetClientDetails_Result item in Model)
+    {
+        @item.Client_Name
+        <br />
+        @item.Client_Surname
+        @item.Client_ID
+
+        @Html.ActionLink("Login", "Login", new { id = item.Client_ID })
+        < hr />*@
+
+
+@*}*@
+
+
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Client_ID)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Client_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Client_Surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Client_Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Client_DOB)
+        </th>
+        <th></th>
+
+    </tr>
+    @foreach (GetClientDetails_Result item in Model)
+    {
+
+        <tr>
+            @*<td>
+                @item.Client_ID
+            </td>*@
+
+            <td>
+                @item.Client_Name
+            </td>
+
+            <td>
+                @item.Client_Surname
+            </td>
+
+            <td>
+                @item.Client_Age
+            </td>
+
+            <td>
+                @item.Client_DOB
+            </td>
+
+            @*@if (Session["Email"] != null)
+                {*@
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.BookID }) |*@
+                @Html.ActionLink("Login", "Login", new { id = item.Client_ID })
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.BookID })*@
+            </td>
+
+
+
+        </tr>
+    }
+
+</table>

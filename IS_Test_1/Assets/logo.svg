@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="106" height="122" viewBox="0 0 106 122">
+  <defs>
+    <linearGradient id="linear-gradient" x1="1" x2="0" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#8dc63f"/>
+      <stop offset="1" stop-color="#009677"/>
+    </linearGradient>
+    <filter id="Rectangle_33" x="0" y="0" width="106" height="122" filterUnits="userSpaceOnUse">
+      <feOffset dx="3" dy="6" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feFlood flood-opacity="0.278"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_10" data-name="Group 10" transform="translate(-7 9)">
+    <g transform="matrix(1, 0, 0, 1, 7, -9)" filter="url(#Rectangle_33)">
+      <rect id="Rectangle_33-2" data-name="Rectangle 33" width="76" height="92" transform="translate(12 9)" fill="url(#linear-gradient)"/>
+    </g>
+    <path id="Exclusion_1" data-name="Exclusion 1" d="M-1698,44.975V43.708l37.858-6.655a19.512,19.512,0,0,0,5.671-1.776,15.9,15.9,0,0,0,4.628-3.679,11.038,11.038,0,0,0,2.536-4.511l.134-.643V38.8a6.192,6.192,0,0,1-6.176,6.172Zm0-38.8A6.193,6.193,0,0,1-1691.824,0h44.651V.049l-18.413,3.185q-9.333,1.613-12.455,7.979a9.5,9.5,0,0,0-.8,2.19l-1.383,6.729q-.838,4.051,4.671,5.615a11.358,11.358,0,0,0,4.927.14l13.077-2.207a5.2,5.2,0,0,1-2.314,4.07,3.765,3.765,0,0,1-1.672.736c-.073.017-.149.033-.224.044l-23.938,4.154,3.251-15.781-12,2.121L-1698,36.249Zm5.828,1.769-1.907,9.254,12-2.12,1.9-9.209Zm28.236,3.782,16.763-2.871v4.119l-7.04,1.208c-.124.018-.251.038-.377.061l-10.962,1.887-2.592.445A5.232,5.232,0,0,1-1663.936,11.726Z" transform="translate(1730.036 22.551)" fill="#fff" stroke="rgba(0,0,0,0)" stroke-miterlimit="10" stroke-width="1"/>
+  </g>
+</svg>

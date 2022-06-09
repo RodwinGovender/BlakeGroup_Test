@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="IS_Test_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="Client_ID" />
+    </Key>
+    <Property Name="Client_ID" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Client_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Client_Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Client_Age" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Client_DOB" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Documents" Relationship="Self.FK__Document__Client__145C0A3F" FromRole="Client" ToRole="Document" />
+  </EntityType>
+  <EntityType Name="Document">
+    <Key>
+      <PropertyRef Name="Doc_ID" />
+    </Key>
+    <Property Name="Doc_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Doc_Name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Doc_Content" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Client_ID" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Client" Relationship="Self.FK__Document__Client__145C0A3F" FromRole="Document" ToRole="Client" />
+  </EntityType>
+  <Association Name="FK__Document__Client__145C0A3F">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="Document" Type="Self.Document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Client_ID" />
+      </Principal>
+      <Dependent Role="Document">
+        <PropertyRef Name="Client_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="IS_Test_DBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Clients" EntityType="Self.Client" />
+    <EntitySet Name="Documents" EntityType="Self.Document" />
+    <AssociationSet Name="FK__Document__Client__145C0A3F" Association="Self.FK__Document__Client__145C0A3F">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Document" EntitySet="Documents" />
+    </AssociationSet>
+    <FunctionImport Name="AddDocument">
+      <Parameter Name="Doc_Name" Mode="In" Type="String" />
+      <Parameter Name="Doc_Content" Mode="In" Type="Binary" />
+      <Parameter Name="Client_ID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetClientDetails" ReturnType="Collection(IS_Test_DBModel.GetClientDetails_Result)" />
+    <FunctionImport Name="GetDocument" ReturnType="Collection(IS_Test_DBModel.GetDocument_Result)">
+      <Parameter Name="Doc_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetDocumentForClient" ReturnType="Collection(IS_Test_DBModel.GetDocumentForClient_Result)">
+      <Parameter Name="Client_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="GetClientDetails_Result">
+    <Property Type="String" Name="Client_ID" Nullable="false" MaxLength="13" />
+    <Property Type="String" Name="Client_Name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Client_Surname" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Client_Age" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Client_DOB" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetDocument_Result">
+    <Property Type="Int32" Name="Doc_ID" Nullable="false" />
+    <Property Type="String" Name="Doc_Name" Nullable="true" MaxLength="60" />
+    <Property Type="Binary" Name="Doc_Content" Nullable="true" />
+    <Property Type="String" Name="Client_ID" Nullable="false" MaxLength="13" />
+  </ComplexType>
+  <ComplexType Name="GetDocumentForClient_Result">
+    <Property Type="Int32" Name="Doc_ID" Nullable="false" />
+    <Property Type="String" Name="Doc_Name" Nullable="true" MaxLength="60" />
+    <Property Type="Binary" Name="Doc_Content" Nullable="true" />
+    <Property Type="String" Name="Client_ID" Nullable="false" MaxLength="13" />
+  </ComplexType>
+</Schema>

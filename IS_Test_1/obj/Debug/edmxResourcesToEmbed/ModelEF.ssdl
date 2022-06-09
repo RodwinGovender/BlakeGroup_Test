@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="IS_Test_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="Client_ID" />
+    </Key>
+    <Property Name="Client_ID" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="Client_Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Client_Surname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Client_Age" Type="varchar" MaxLength="50" />
+    <Property Name="Client_DOB" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Document">
+    <Key>
+      <PropertyRef Name="Doc_ID" />
+    </Key>
+    <Property Name="Doc_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Doc_Name" Type="varchar" MaxLength="60" />
+    <Property Name="Doc_Content" Type="varbinary(max)" />
+    <Property Name="Client_ID" Type="varchar" MaxLength="13" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Document__Client__145C0A3F">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="Document" Type="Self.Document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Client_ID" />
+      </Principal>
+      <Dependent Role="Document">
+        <PropertyRef Name="Client_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="AddDocument" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Doc_Name" Type="varchar" Mode="In" />
+    <Parameter Name="Doc_Content" Type="varbinary(max)" Mode="In" />
+    <Parameter Name="Client_ID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="GetClientDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetDocument" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Doc_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetDocumentForClient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Client_ID" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="IS_Test_DBModelStoreContainer">
+    <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Document__Client__145C0A3F" Association="Self.FK__Document__Client__145C0A3F">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Document" EntitySet="Document" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
