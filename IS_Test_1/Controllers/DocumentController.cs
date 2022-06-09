@@ -120,6 +120,7 @@ namespace IS_Test_1.Controllers
             Session["ID"] = "";
             Session["Name"] = "";
             Session["Surname"] = "";
+            Session["Error"] = "";
 
             return RedirectToAction("Index" , "Client");
         
